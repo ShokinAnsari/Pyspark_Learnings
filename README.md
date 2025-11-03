@@ -69,7 +69,29 @@ df.limit(10).displa() # display only 10 records
 
 # drop()->just drop the particular columns 
 df.drop("name").display() 
-df.frop("name","age").display() #drops multiple columns
+df.frop("name","age").display() #drops multiple columns 
+
+# Drop Duplicates 
+df.dropDuplicates().display() # removes duplicates from table
+df.drop_duplicates(subset=["name"]).display() # removes duplicates from particular column
+df.distinct().display() #similar to dropDuplicates
+
+# Union
+df1.union(df2) 
+df1.unionByName(df2) #if order of caolumns changed than it will automatically union in correct way
+
+# String Functions 
+df.select(initcap("name")).display() #first letter capital
+df.select(lower("name")).display() #whole string is lowercase
+df.select(upper("name")).display() #whole string is uppercase
+
+# Date Functions 
+df.withColumn("curr-date",current_date()).display() #seperate column appear for current date
+
+df.withColumn("weekafter",date_add("curr-date",7)).display() add 7 days in current date and create new column weekafter
+df.withColumn("weekbefore",date_sub("curr-date",-7)).display() sub 7 days in current date and create new column weekbefore 
+df.withColumn("differnceCol",datediff("curr-date","weekbefore")).display() # create datedifference column named as differenceCol
+df.withColumn("weekbefore",dateformat("weekforman","dd-mm-yyyy")).display() # show dates in this format 
 
 
 
